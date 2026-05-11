@@ -8,6 +8,8 @@
   import InputDialog from './InputDialog.svelte';
   import ConfirmDialog from './ConfirmDialog.svelte';
 
+  let { onsearch = () => {} } = $props<{ onsearch?: () => void }>();
+
   let newFileDialogOpen = $state(false);
   let newFolderDialogOpen = $state(false);
   let renameDialogOpen = $state(false);
@@ -110,7 +112,7 @@
         Navigation
       </h2>
       <div class="flex items-center gap-1">
-        <button class="p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded cursor-pointer text-text-muted">
+        <button class="p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded cursor-pointer text-text-muted" onclick={onsearch}>
           <Search size={14} />
         </button>
       </div>

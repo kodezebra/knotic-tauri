@@ -27,7 +27,6 @@ class UIState {
         this.viewMode = mode;
         if (mode === 'focus') {
             this.sidebarVisible = false;
-            this.previewVisible = false;
         } else if (mode === 'preview') {
             this.sidebarVisible = true;
             this.previewVisible = true;

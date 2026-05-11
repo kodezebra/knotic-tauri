@@ -55,12 +55,24 @@
           </div>
         {/if}
       {:else if ui.viewMode === 'focus'}
-        <!-- Focus Mode: Centered Editor -->
-        <div class="flex-1 h-full overflow-hidden bg-bg-editor flex justify-center py-8">
-          <div class="w-full max-w-4xl h-full shadow-2xl border border-border-subtle rounded-lg overflow-hidden">
-            <EditorContainer />
+        {#if ui.previewVisible}
+          <!-- Focus Mode: Split (no chrome) -->
+          <div class="flex-1 flex overflow-hidden bg-bg-editor">
+            <div class="flex-1 h-full overflow-hidden border-r border-border-subtle">
+              <EditorContainer />
+            </div>
+            <div class="flex-1 h-full overflow-hidden">
+              <PreviewContainer />
+            </div>
           </div>
-        </div>
+        {:else}
+          <!-- Focus Mode: Centered Editor -->
+          <div class="flex-1 h-full overflow-hidden bg-bg-editor flex justify-center py-8">
+            <div class="w-full max-w-4xl h-full shadow-2xl border border-border-subtle rounded-lg overflow-hidden">
+              <EditorContainer />
+            </div>
+          </div>
+        {/if}
       {:else if ui.viewMode === 'preview'}
         <!-- Preview Mode: Documentation View -->
         <div class="flex-1 h-full overflow-hidden bg-bg-editor">

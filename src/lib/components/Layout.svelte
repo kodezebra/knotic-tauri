@@ -147,7 +147,7 @@
                 class="z-50 px-3 py-1.5 text-xs bg-bg-activity border border-border-subtle text-text-primary rounded-md shadow-lg"
                 sideOffset={10}
               >
-                Focus Mode
+                Focus Mode (Esc)
               </Tooltip.Content>
             </Tooltip.Root>
 
@@ -166,7 +166,7 @@
                 class="z-50 px-3 py-1.5 text-xs bg-bg-activity border border-border-subtle text-text-primary rounded-md shadow-lg"
                 sideOffset={10}
               >
-                Preview Mode
+                Preview Mode (Ctrl+Shift+P)
               </Tooltip.Content>
             </Tooltip.Root>
 
@@ -205,7 +205,7 @@
         class="bg-bg-sidebar border-r border-border-subtle overflow-hidden flex flex-col z-10 shrink-0"
         style="width: {ui.sidebarWidth}px"
       >
-        <Sidebar />
+        <Sidebar onsearch={() => searchOpen = true} />
       </div>
       <button
         class="w-1 shrink-0 cursor-col-resize hover:bg-brand-primary/50 active:bg-brand-primary transition-colors z-20 p-0 {isDragging ? 'bg-brand-primary/50' : ''}"
@@ -226,7 +226,7 @@
         </button>
       {/if}
       
-      <div class="flex-1 flex flex-col min-w-0 overflow-hidden" class:max-w-4xl={ui.viewMode === 'preview'} class:mx-auto={ui.viewMode === 'preview'}>
+      <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
         {@render children()}
       </div>
     </main>
