@@ -22,16 +22,11 @@
       typographer: true,
       highlight: (code: string, lang: string) => {
         if (highlighter && lang) {
-          return highlighter.codeToHtml(code, {
+          const html = highlighter.codeToHtml(code, {
             lang,
-            theme: ui.theme === 'dark' ? 'github-dark' : 'github-light',
-            transformers: [{
-              name: 'code-block-enhancer',
-              pre(node: any) {
-                node.properties['data-language'] = lang;
-              }
-            }]
+            theme: ui.theme === 'dark' ? 'github-dark' : 'github-light'
           });
+          return html.replace('<pre', `<pre data-language="${lang}"`);
         }
         return '';
       }

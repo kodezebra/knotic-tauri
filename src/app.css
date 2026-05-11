@@ -56,3 +56,34 @@
   width: 8px;
   height: 8px;
 }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body {
+    height: auto;
+    overflow: visible;
+    background: white;
+  }
+
+  pre, code {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+}

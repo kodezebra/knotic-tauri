@@ -14,7 +14,7 @@
   <div class="flex flex-col h-full overflow-hidden">
     <!-- Tab Bar (Only in Workspace mode) -->
     {#if ui.viewMode === 'workspace'}
-      <div class="flex h-9 bg-bg-activity border-b border-border-subtle overflow-x-auto no-scrollbar">
+      <div class="flex h-9 bg-bg-activity border-b border-border-subtle overflow-x-auto no-scrollbar print:hidden">
         {#each editor.tabs as tab (tab.path)}
           <button 
             class="flex items-center h-full px-3 gap-2 border-r border-border-subtle min-w-[120px] max-w-[200px] text-xs transition-colors group cursor-pointer"
@@ -45,7 +45,7 @@
     <div class="flex-1 flex overflow-hidden">
       {#if ui.viewMode === 'workspace'}
         <!-- Workspace Mode: Split View -->
-        <div class="flex-1 h-full overflow-hidden border-r border-border-subtle">
+        <div class="flex-1 h-full overflow-hidden border-r border-border-subtle print:hidden">
           <EditorContainer />
         </div>
 
@@ -58,7 +58,7 @@
         {#if ui.previewVisible}
           <!-- Focus Mode: Split (no chrome) -->
           <div class="flex-1 flex overflow-hidden bg-bg-editor">
-            <div class="flex-1 h-full overflow-hidden border-r border-border-subtle">
+            <div class="flex-1 h-full overflow-hidden border-r border-border-subtle print:hidden">
               <EditorContainer />
             </div>
             <div class="flex-1 h-full overflow-hidden">
@@ -67,7 +67,7 @@
           </div>
         {:else}
           <!-- Focus Mode: Centered Editor -->
-          <div class="flex-1 h-full overflow-hidden bg-bg-editor flex justify-center py-8">
+          <div class="flex-1 h-full overflow-hidden bg-bg-editor flex justify-center py-8 print:hidden">
             <div class="w-full max-w-4xl h-full shadow-2xl border border-border-subtle rounded-lg overflow-hidden">
               <EditorContainer />
             </div>
@@ -82,7 +82,7 @@
     </div>
   </div>
 {:else}
-  <div class="flex-1 flex flex-col items-center justify-center gap-6 p-8 text-center bg-bg-editor">
+  <div class="flex-1 flex flex-col items-center justify-center gap-6 p-8 text-center bg-bg-editor print:hidden">
     <div class="w-24 h-24 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
       <BookOpenCheck size={48} />
     </div>

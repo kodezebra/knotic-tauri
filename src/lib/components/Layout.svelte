@@ -6,7 +6,7 @@
   import SearchDialog from './SearchDialog.svelte';
   import ShortcutsDialog from './ShortcutsDialog.svelte';
   import { onMount } from 'svelte';
-  import { Files, PenLine, BookOpen, Settings, User, Search, Sun, Moon, Keyboard } from 'lucide-svelte';
+  import { Files, PenLine, BookOpen, Settings, User, Search, Sun, Moon, Keyboard, Printer } from 'lucide-svelte';
   import { Tooltip } from 'bits-ui';
 
   let { children } = $props();
@@ -111,7 +111,7 @@
     <!-- Activity Bar (VS Code Style) -->
     {#if ui.viewMode !== 'focus'}
       <div 
-        class="flex flex-col items-center py-4 bg-bg-activity border-r border-border-subtle z-20"
+        class="flex flex-col items-center py-4 bg-bg-activity border-r border-border-subtle z-20 print:hidden"
         style="width: {ui.activityBarWidth}px"
       >
         <div class="flex flex-1 flex-col gap-4">
@@ -202,20 +202,20 @@
     <!-- Sidebar (File Explorer / TOC) -->
     {#if ui.sidebarVisible}
       <div
-        class="bg-bg-sidebar border-r border-border-subtle overflow-hidden flex flex-col z-10 shrink-0"
+        class="bg-bg-sidebar border-r border-border-subtle overflow-hidden flex flex-col z-10 shrink-0 print:hidden"
         style="width: {ui.sidebarWidth}px"
       >
         <Sidebar onsearch={() => searchOpen = true} />
       </div>
       <button
-        class="w-1 shrink-0 cursor-col-resize hover:bg-brand-primary/50 active:bg-brand-primary transition-colors z-20 p-0 {isDragging ? 'bg-brand-primary/50' : ''}"
+        class="w-1 shrink-0 cursor-col-resize hover:bg-brand-primary/50 active:bg-brand-primary transition-colors z-20 p-0 print:hidden {isDragging ? 'bg-brand-primary/50' : ''}"
         onmousedown={startResize}
         aria-label="Resize sidebar"
       ></button>
     {/if}
 
     <!-- Main Content -->
-    <main class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden relative print:block print:w-full print:h-auto print:overflow-visible">
       {#if ui.viewMode === 'focus'}
         <button 
           class="absolute top-4 left-4 p-2 text-text-muted hover:text-text-primary hover:bg-white/5 rounded-md z-30 transition-all opacity-0 hover:opacity-100"
@@ -234,7 +234,7 @@
 
   <!-- Status Bar -->
   {#if ui.viewMode !== 'focus'}
-    <footer class="h-6 bg-bg-status text-white text-[11px] flex items-center px-3 justify-between z-30">
+    <footer class="h-6 bg-bg-status text-white text-[11px] flex items-center px-3 justify-between z-30 print:hidden">
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-1.5">
           <div class="w-2 h-2 rounded-full bg-green-400"></div>
@@ -243,6 +243,13 @@
         <span class="opacity-70 truncate max-w-md">{workspace.current?.path || ''}</span>
       </div>
       <div class="flex items-center gap-4">
+        <button
+          class="flex items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
+          onclick={() => window.print()}
+          title="Print"
+        >
+          <Printer size={12} />
+        </button>
         <button
           class="flex items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
           onclick={() => shortcutsOpen = true}
