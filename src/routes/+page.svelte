@@ -17,7 +17,7 @@
       <div class="flex h-9 bg-bg-activity border-b border-border-subtle overflow-x-auto no-scrollbar">
         {#each editor.tabs as tab (tab.path)}
           <button 
-            class="flex items-center h-full px-3 gap-2 border-r border-border-subtle min-w-[120px] max-w-[200px] max-md:min-w-[80px] max-md:max-w-[120px] max-md:text-[11px] text-xs transition-colors group cursor-pointer"
+            class="flex items-center h-full px-3 gap-2 border-r border-border-subtle min-w-[120px] max-w-[200px] text-xs transition-colors group cursor-pointer"
             class:bg-bg-editor={editor.activePath === tab.path}
             class:text-text-primary={editor.activePath === tab.path}
             class:text-text-muted={editor.activePath !== tab.path}
@@ -44,33 +44,20 @@
     <!-- Content Area -->
     <div class="flex-1 flex overflow-hidden">
       {#if ui.viewMode === 'workspace'}
-        {#if ui.isSmall}
-          <!-- Narrow: show editor or preview, one at a time -->
-          {#if ui.previewVisible}
-            <div class="flex-1 h-full overflow-hidden">
-              <PreviewContainer />
-            </div>
-          {:else}
-            <div class="flex-1 h-full overflow-hidden border-r border-border-subtle">
-              <EditorContainer />
-            </div>
-          {/if}
-        {:else}
-          <!-- Workspace Mode: Split View -->
-          <div class="flex-1 h-full overflow-hidden border-r border-border-subtle">
-            <EditorContainer />
-          </div>
+        <!-- Workspace Mode: Split View -->
+        <div class="flex-1 h-full overflow-hidden border-r border-border-subtle">
+          <EditorContainer />
+        </div>
 
-          {#if ui.previewVisible}
-            <div class="flex-1 h-full overflow-hidden bg-bg-editor">
-              <PreviewContainer />
-            </div>
-          {/if}
+        {#if ui.previewVisible}
+          <div class="flex-1 h-full overflow-hidden bg-bg-editor">
+            <PreviewContainer />
+          </div>
         {/if}
       {:else if ui.viewMode === 'focus'}
         <!-- Focus Mode: Centered Editor -->
-        <div class="flex-1 h-full overflow-hidden bg-bg-editor flex justify-center py-8 max-md:py-4 max-md:px-2">
-          <div class="w-full max-w-4xl max-lg:max-w-2xl max-md:max-w-full h-full shadow-2xl border border-border-subtle rounded-lg overflow-hidden">
+        <div class="flex-1 h-full overflow-hidden bg-bg-editor flex justify-center py-8">
+          <div class="w-full max-w-4xl h-full shadow-2xl border border-border-subtle rounded-lg overflow-hidden">
             <EditorContainer />
           </div>
         </div>
@@ -83,13 +70,13 @@
     </div>
   </div>
 {:else}
-  <div class="flex-1 flex flex-col items-center justify-center gap-6 max-md:gap-4 p-8 max-md:p-4 text-center bg-bg-editor">
-    <div class="w-24 h-24 max-md:w-16 max-md:h-16 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary max-md:[&_svg]:w-8 max-md:[&_svg]:h-8">
+  <div class="flex-1 flex flex-col items-center justify-center gap-6 p-8 text-center bg-bg-editor">
+    <div class="w-24 h-24 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
       <BookOpenCheck size={48} />
     </div>
     <div class="space-y-2">
-      <h1 class="text-2xl max-md:text-xl font-bold text-text-primary">Welcome to Knotic</h1>
-      <p class="text-text-muted max-w-md max-sm:max-w-full">Open a tutorial from the explorer or create a new one to get started with your documentation.</p>
+      <h1 class="text-2xl font-bold text-text-primary">Welcome to Knotic</h1>
+      <p class="text-text-muted max-w-md">Open a tutorial from the explorer or create a new one to get started with your documentation.</p>
     </div>
   </div>
 {/if}

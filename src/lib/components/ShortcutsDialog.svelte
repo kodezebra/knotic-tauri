@@ -49,7 +49,7 @@
   <Dialog.Portal>
     <Dialog.Overlay class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm" />
     <Dialog.Content
-      class="fixed left-[50%] top-[50%] z-50 w-[90vw] max-w-[480px] max-sm:w-[95vw] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-bg-activity p-6 max-sm:p-4 shadow-2xl border border-border-subtle"
+      class="fixed left-[50%] top-[50%] z-50 w-[90vw] max-w-[480px] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-bg-activity p-6 shadow-2xl border border-border-subtle"
       onkeydown={handleKeydown}
     >
       <div class="flex items-center justify-between mb-6">
@@ -64,7 +64,7 @@
         </Dialog.Close>
       </div>
 
-      <div class="space-y-5 max-h-[400px] max-sm:max-h-[60vh] overflow-y-auto -mx-2 px-2">
+      <div class="space-y-5 max-h-[400px] overflow-y-auto -mx-2 px-2">
         {#each groups as group}
           <div>
             <h3 class="text-xs font-bold uppercase tracking-wider text-text-muted mb-2">{group.label}</h3>

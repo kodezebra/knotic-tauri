@@ -13,11 +13,29 @@
 
   let searchOpen = $state(false);
   let shortcutsOpen = $state(false);
+  let isDragging = $state(false);
+
+  function startResize(e: MouseEvent) {
+    isDragging = true;
+    e.preventDefault();
+
+    const handleMouseMove = (e: MouseEvent) => {
+      ui.setSidebarWidth(e.clientX - ui.activityBarWidth);
+    };
+
+    const handleMouseUp = () => {
+      isDragging = false;
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+  }
 
   onMount(() => {
     workspace.initialize();
     ui.initTheme();
-    const cleanupResize = ui.initResizeTracking();
 
     const handleKeyDown = (e: KeyboardEvent) => {
       const mod = e.metaKey || e.ctrlKey;
@@ -74,10 +92,6 @@
       if (e.key === 'Escape' && ui.viewMode === 'focus') {
         ui.setViewMode('workspace');
       }
-
-      if (e.key === 'Escape' && ui.isOverlaySidebar && ui.sidebarVisible) {
-        ui.sidebarVisible = false;
-      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -88,20 +102,19 @@
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('focus', handleFocus);
-      cleanupResize();
     };
   });
 </script>
 
 <div class="flex h-screen w-screen flex-col overflow-hidden bg-bg-editor selection:bg-brand-primary/30">
-  <div class="flex flex-1 overflow-hidden">
+  <div class="flex flex-1 overflow-hidden" class:select-none={isDragging}>
     <!-- Activity Bar (VS Code Style) -->
     {#if ui.viewMode !== 'focus'}
       <div 
-        class="flex flex-col items-center py-4 max-md:py-2 bg-bg-activity border-r border-border-subtle z-20 max-md:w-11 max-sm:w-[40px]"
+        class="flex flex-col items-center py-4 bg-bg-activity border-r border-border-subtle z-20"
         style="width: {ui.activityBarWidth}px"
       >
-        <div class="flex flex-1 flex-col gap-4 max-md:[&_svg]:w-5 max-md:[&_svg]:h-5 max-sm:[&_svg]:w-[18px] max-sm:[&_svg]:h-[18px]">
+        <div class="flex flex-1 flex-col gap-4">
           <Tooltip.Provider>
             <Tooltip.Root delayDuration={200}>
               <Tooltip.Trigger 
@@ -175,7 +188,7 @@
           </Tooltip.Provider>
         </div>
 
-        <div class="flex flex-col gap-4 max-md:hidden">
+        <div class="flex flex-col gap-4">
           <button class="p-2 text-text-muted hover:text-text-primary transition-colors cursor-pointer">
             <User size={24} strokeWidth={1.5} />
           </button>
@@ -188,25 +201,17 @@
 
     <!-- Sidebar (File Explorer / TOC) -->
     {#if ui.sidebarVisible}
-      {#if ui.isOverlaySidebar}
-        <div
-          class="fixed inset-0 z-20 bg-black/30"
-          role="button"
-          tabindex="0"
-          onclick={() => ui.sidebarVisible = false}
-          onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') ui.sidebarVisible = false; }}
-        ></div>
-        <div class="fixed top-0 bottom-6 w-60 z-30 bg-bg-sidebar border-r border-border-subtle overflow-hidden flex flex-col shadow-xl" style="left: {ui.activityBarWidth}px">
-          <Sidebar />
-        </div>
-      {:else}
-        <div
-          class="bg-bg-sidebar border-r border-border-subtle overflow-hidden flex flex-col z-10 max-lg:w-48"
-          style="width: {ui.sidebarWidth}px"
-        >
-          <Sidebar />
-        </div>
-      {/if}
+      <div
+        class="bg-bg-sidebar border-r border-border-subtle overflow-hidden flex flex-col z-10 shrink-0"
+        style="width: {ui.sidebarWidth}px"
+      >
+        <Sidebar />
+      </div>
+      <button
+        class="w-1 shrink-0 cursor-col-resize hover:bg-brand-primary/50 active:bg-brand-primary transition-colors z-20 p-0 {isDragging ? 'bg-brand-primary/50' : ''}"
+        onmousedown={startResize}
+        aria-label="Resize sidebar"
+      ></button>
     {/if}
 
     <!-- Main Content -->
@@ -235,11 +240,11 @@
           <div class="w-2 h-2 rounded-full bg-green-400"></div>
           <span class="font-medium">{workspace.current?.name || 'No Workspace'}</span>
         </div>
-        <span class="opacity-70 truncate max-w-md max-lg:hidden">{workspace.current?.path || ''}</span>
+        <span class="opacity-70 truncate max-w-md">{workspace.current?.path || ''}</span>
       </div>
       <div class="flex items-center gap-4">
         <button
-          class="flex items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer max-md:hidden"
+          class="flex items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
           onclick={() => shortcutsOpen = true}
           title="Keyboard Shortcuts"
         >
@@ -257,8 +262,8 @@
           {/if}
           <span class="uppercase tracking-wider">{ui.theme} mode</span>
         </button>
-        <span class="uppercase tracking-wider opacity-80 max-md:hidden">{ui.viewMode}</span>
-        <span class="opacity-80 max-md:hidden">UTF-8</span>
+        <span class="uppercase tracking-wider opacity-80">{ui.viewMode}</span>
+        <span class="opacity-80">UTF-8</span>
       </div>
     </footer>
   {/if}

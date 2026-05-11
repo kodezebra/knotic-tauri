@@ -87,7 +87,7 @@
 </script>
 
 <div class="flex flex-col h-full" class:bg-white={ui.viewMode === 'preview' && ui.theme === 'light'} class:dark:bg-bg-sidebar={ui.viewMode === 'preview'}>
-  <div class="p-3 border-b border-border-subtle flex items-center justify-between group h-12">
+  <div class="px-2 py-1.5 border-b border-border-subtle flex items-center justify-between group h-9">
     {#if ui.viewMode === 'workspace'}
       <h2 class="text-xs font-bold uppercase tracking-wider text-text-muted">Explorer</h2>
       <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -117,7 +117,7 @@
     {/if}
   </div>
 
-  <div class="flex-1 overflow-y-auto p-2">
+  <div class="flex-1 overflow-y-auto p-1">
     {#if workspace.error}
       <div class="mx-2 mb-2 p-2 bg-red-500/10 border border-red-500/30 rounded text-xs text-red-400">
         {workspace.error}

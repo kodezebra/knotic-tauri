@@ -102,7 +102,7 @@
       onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') onclose(); }}
     ></div>
 
-    <div class="relative w-[90vw] max-w-[600px] max-sm:w-[95vw] flex flex-col gap-1">
+    <div class="relative w-[90vw] max-w-[600px] flex flex-col gap-1">
       <div class="bg-bg-activity border border-border-subtle rounded-xl shadow-2xl overflow-hidden">
         <div class="flex items-center gap-2 px-4 py-3 border-b border-border-subtle">
           <Search size={16} class="text-text-muted shrink-0" />
@@ -127,7 +127,7 @@
 
         {#if query.trim() && !isLoading}
           {#if results.length > 0}
-            <div class="max-h-[400px] max-sm:max-h-[60vh] overflow-y-auto p-1">
+            <div class="max-h-[400px] overflow-y-auto p-1">
               {#each results as result, i (result.path)}
                 <button
                   class="w-full flex items-start gap-3 px-3 py-2 rounded-lg text-left transition-colors cursor-pointer {i === selectedIndex ? 'bg-brand-primary/20' : 'hover:bg-white/5'}"

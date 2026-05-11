@@ -41,7 +41,7 @@
       <ContextMenu.Root>
         <ContextMenu.Trigger>
           <button
-            class="w-full flex items-center gap-1.5 px-2 rounded transition-all cursor-pointer group {ui.viewMode === 'workspace' ? 'py-1 text-sm' : 'py-2 text-[13px]'} {ui.viewMode === 'workspace' || ui.theme === 'dark' ? 'hover:bg-white/5' : ''} {ui.viewMode === 'preview' && ui.theme === 'light' ? 'hover:bg-black/5' : ''} {editor.activePath !== item.path ? 'text-text-primary' : 'text-brand-primary'} {editor.activePath === item.path && ui.viewMode === 'preview' ? 'font-medium' : ''}"
+            class="w-full flex items-center gap-1.5 px-1.5 rounded transition-all cursor-pointer group {ui.viewMode === 'workspace' ? 'py-0.5 text-sm' : 'py-1.5 text-[13px]'} {ui.viewMode === 'workspace' || ui.theme === 'dark' ? 'hover:bg-white/5' : ''} {ui.viewMode === 'preview' && ui.theme === 'light' ? 'hover:bg-black/5' : ''} {editor.activePath !== item.path ? 'text-text-primary' : 'text-brand-primary'} {editor.activePath === item.path && ui.viewMode === 'preview' ? 'font-medium' : ''}"
             onclick={() => handleFileClick(item)}
           >
             {#if ui.viewMode === 'workspace'}

@@ -5,21 +5,14 @@ export type ViewMode = 'workspace' | 'focus' | 'preview';
 class UIState {
     sidebarVisible = $state(true);
     activityBarWidth = $state(50);
-    sidebarWidth = $state(260);
+    sidebarWidth = $state(200);
     previewVisible = $state(true);
     viewMode = $state<ViewMode>('workspace');
     theme = $state<'light' | 'dark'>('dark');
     newFileCounter = $state(0);
-    windowWidth = $state(1200);
 
-    isOverlaySidebar = $derived(this.windowWidth < 768);
-    isSmall = $derived(this.windowWidth < 768);
-
-    initResizeTracking() {
-        this.windowWidth = window.innerWidth;
-        const handler = () => this.windowWidth = window.innerWidth;
-        window.addEventListener('resize', handler);
-        return () => window.removeEventListener('resize', handler);
+    setSidebarWidth(width: number) {
+        this.sidebarWidth = Math.max(150, Math.min(400, width));
     }
 
     toggleSidebar() {

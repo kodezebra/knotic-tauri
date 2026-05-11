@@ -46,7 +46,7 @@
   });
 </script>
 
-<div class="flex-1 h-full overflow-y-auto p-8 max-md:p-4 max-sm:p-2 prose dark:prose-invert max-w-none bg-bg-editor transition-colors">
+  <div class="flex-1 h-full overflow-y-auto p-8 prose dark:prose-invert max-w-none bg-bg-editor transition-colors">
   {@html renderedContent}
 </div>
 

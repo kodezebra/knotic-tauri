@@ -20,7 +20,7 @@
 <Dialog.Root bind:open>
   <Dialog.Portal>
     <Dialog.Overlay class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" />
-    <Dialog.Content class="fixed left-[50%] top-[50%] z-50 w-[90vw] max-w-[400px] max-sm:w-[95vw] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-bg-activity p-6 max-sm:p-4 shadow-2xl border border-border-subtle">
+    <Dialog.Content class="fixed left-[50%] top-[50%] z-50 w-[90vw] max-w-[400px] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-bg-activity p-6 shadow-2xl border border-border-subtle">
       <div class="flex items-center gap-3 mb-6">
         {#if variant === 'danger'}
           <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 shrink-0">
