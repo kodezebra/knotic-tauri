@@ -88,7 +88,7 @@
   }
 </script>
 
-<div class="flex flex-col h-full" class:bg-white={ui.viewMode === 'preview' && ui.theme === 'light'} class:dark:bg-bg-sidebar={ui.viewMode === 'preview'}>
+<div class="flex flex-col h-full" class:bg-white={ui.viewMode === 'preview' && ui.theme === 'light'} class:bg-bg-sidebar={ui.viewMode === 'preview' && ui.theme === 'dark'}>
   <div class="px-2 py-1.5 border-b border-border-subtle flex items-center justify-between group h-9">
     {#if ui.viewMode === 'workspace'}
       <h2 class="text-xs font-bold uppercase tracking-wider text-text-muted">Explorer</h2>
@@ -131,7 +131,11 @@
         <div class="w-5 h-5 border-2 border-brand-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     {:else if workspace.current}
-      <div class:prose={ui.viewMode === 'preview'} class:prose-sm={ui.viewMode === 'preview'}>
+      <div 
+        class:prose={ui.viewMode === 'preview'} 
+        class:prose-sm={ui.viewMode === 'preview'}
+        class:prose-invert={ui.viewMode === 'preview' && ui.theme === 'dark'}
+      >
         <FileTree
           items={workspace.fileTree}
           onNewFile={promptNewFile}

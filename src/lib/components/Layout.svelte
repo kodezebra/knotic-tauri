@@ -8,6 +8,7 @@
   import { onMount } from 'svelte';
   import { Files, PenLine, BookOpen, Settings, User, Search, Sun, Moon, Keyboard, Printer } from 'lucide-svelte';
   import { Tooltip } from 'bits-ui';
+  import { exportPdf } from '$lib/print';
 
   let { children } = $props();
 
@@ -245,8 +246,8 @@
       <div class="flex items-center gap-4">
         <button
           class="flex items-center gap-1 opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
-          onclick={() => window.print()}
-          title="Print"
+          onclick={() => exportPdf()}
+          title="Export PDF"
         >
           <Printer size={12} />
         </button>

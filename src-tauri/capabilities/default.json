@@ -7,9 +7,9 @@
   ],
   "permissions": [
     "core:default",
-    "core:webview:allow-print",
     "log:default",
     "dialog:default",
-    "fs:default"
+    "fs:default",
+    "fs:allow-write-file"
   ]
 }

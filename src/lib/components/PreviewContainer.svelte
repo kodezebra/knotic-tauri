@@ -42,9 +42,10 @@
   }
 
   $effect(() => {
-    if (editor.content || true) {
-      updatePreview();
-    }
+    // Re-render when content or theme changes
+    const _content = editor.content;
+    const _theme = ui.theme;
+    updatePreview();
   });
 
   $effect(() => {
@@ -96,7 +97,11 @@
 <div
   bind:this={previewEl}
   role="none"
-  class="flex-1 h-full overflow-y-auto p-8 prose dark:prose-invert max-w-none bg-bg-editor transition-colors"
+  data-print-root
+  class="flex-1 h-full overflow-y-auto p-8 markdown-body max-w-none bg-white dark:bg-bg-editor"
+  data-color-mode={ui.theme}
+  data-light-theme="light"
+  data-dark-theme="dark"
   onclick={handleCopyClick}
 >
   {@html renderedContent}
@@ -150,7 +155,7 @@
 
   :global(.copy-btn:hover) {
     color: var(--color-text-primary);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-bg-sidebar);
   }
 
   :global(.code-block:hover .copy-btn) {
