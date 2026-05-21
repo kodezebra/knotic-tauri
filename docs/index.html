@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knotic — Markdown notes. Native speed.</title>
+  <meta name="description" content="A fast, native markdown note-taking app for desktop. Built with Tauri and Svelte." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: { DEFAULT: '#6366f1', hover: '#4f46e5' },
+            surface: '#0f0f11',
+            card: '#1a1a1e',
+            border: '#27272a',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="icon.png" />
+</head>
+<body class="bg-surface text-gray-200 font-sans antialiased">
+  <nav class="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-lg">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="icon.png" alt="Knotic" class="h-7 w-7" />
+        <span class="text-lg font-semibold tracking-tight text-white">Knotic</span>
+      </a>
+      <a
+        href="https://github.com/kodezebra/knotic/releases/latest"
+        target="_blank"
+        class="rounded-lg bg-accent px-5 py-2 text-sm font-medium text-white transition hover:bg-accent-hover"
+      >
+        Download
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="mx-auto max-w-5xl px-6 pt-24 pb-20 text-center">
+      <h1 class="text-5xl font-extrabold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+        Markdown notes.<br />
+        <span class="bg-gradient-to-r from-accent to-purple-400 bg-clip-text text-transparent">Native speed.</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-400">
+        Knotic is a fast, lightweight markdown note-taking app built with Tauri.
+        No Electron bloat. Just a clean, native experience for your desktop.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="https://github.com/kodezebra/knotic/releases/latest"
+          target="_blank"
+          class="rounded-lg bg-accent px-7 py-3 text-base font-semibold text-white shadow-lg shadow-accent/25 transition hover:bg-accent-hover"
+        >
+          Download for Linux
+        </a>
+        <a
+          href="https://github.com/kodezebra/knotic/releases/latest"
+          target="_blank"
+          class="rounded-lg border border-border bg-card px-7 py-3 text-base font-semibold text-gray-300 transition hover:border-gray-600 hover:text-white"
+        >
+          Download for Windows
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-gray-500">v0.1.0 &middot; Free &amp; open source</p>
+    </section>
+
+    <section class="mx-auto max-w-5xl px-6 pb-20">
+      <div class="overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
+        <div class="flex items-center gap-1.5 border-b border-border px-4 py-3">
+          <span class="h-3 w-3 rounded-full bg-red-500"></span>
+          <span class="h-3 w-3 rounded-full bg-yellow-500"></span>
+          <span class="h-3 w-3 rounded-full bg-green-500"></span>
+          <span class="ml-2 text-xs text-gray-500">knotic &mdash; ~/notes</span>
+        </div>
+        <div class="flex h-80 items-center justify-center bg-gray-900 text-gray-500">
+          <div class="text-center">
+            <svg class="mx-auto mb-3 h-12 w-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p class="text-sm">Screenshot coming soon</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-5xl px-6 pb-24">
+      <h2 class="mb-12 text-center text-3xl font-bold text-white">Everything you need</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-xl border border-border bg-card p-6 transition hover:border-gray-600">
+          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 font-semibold text-white">Monaco Editor</h3>
+          <p class="text-sm leading-relaxed text-gray-400">Full-featured markdown editing with syntax highlighting, code folding, and multi-cursor support.</p>
+        </div>
+        <div class="rounded-xl border border-border bg-card p-6 transition hover:border-gray-600">
+          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 font-semibold text-white">Live Preview</h3>
+          <p class="text-sm leading-relaxed text-gray-400">See your rendered markdown in real-time with GitHub-style theming and syntax-highlighted code blocks.</p>
+        </div>
+        <div class="rounded-xl border border-border bg-card p-6 transition hover:border-gray-600">
+          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 font-semibold text-white">File Tree</h3>
+          <p class="text-sm leading-relaxed text-gray-400">Organize your notes with a familiar file-tree sidebar. Create, rename, and delete files right in the app.</p>
+        </div>
+        <div class="rounded-xl border border-border bg-card p-6 transition hover:border-gray-600">
+          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 font-semibold text-white">Dark &amp; Light Mode</h3>
+          <p class="text-sm leading-relaxed text-gray-400">Seamless theme switching with carefully crafted light and dark color schemes for comfortable writing.</p>
+        </div>
+        <div class="rounded-xl border border-border bg-card p-6 transition hover:border-gray-600">
+          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 font-semibold text-white">Full-Text Search</h3>
+          <p class="text-sm leading-relaxed text-gray-400">Lightning-fast full-text search across your entire workspace. Find any note in milliseconds.</p>
+        </div>
+        <div class="rounded-xl border border-border bg-card p-6 transition hover:border-gray-600">
+          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 font-semibold text-white">PDF Export</h3>
+          <p class="text-sm leading-relaxed text-gray-400">Export your notes to beautifully formatted PDFs with a single click. Perfect for sharing and archiving.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-border">
+      <div class="mx-auto max-w-5xl px-6 py-16 text-center">
+        <h2 class="text-2xl font-bold text-white">Ready to try it?</h2>
+        <p class="mt-3 text-gray-400">Download for free and start writing.</p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://github.com/kodezebra/knotic/releases/latest"
+            target="_blank"
+            class="rounded-lg bg-accent px-7 py-3 text-base font-semibold text-white shadow-lg shadow-accent/25 transition hover:bg-accent-hover"
+          >
+            Download .deb
+          </a>
+          <a
+            href="https://github.com/kodezebra/knotic/releases/latest"
+            target="_blank"
+            class="rounded-lg border border-border bg-card px-7 py-3 text-base font-semibold text-gray-300 transition hover:border-gray-600 hover:text-white"
+          >
+            Download .AppImage
+          </a>
+          <a
+            href="https://github.com/kodezebra/knotic/releases/latest"
+            target="_blank"
+            class="rounded-lg border border-border bg-card px-7 py-3 text-base font-semibold text-gray-300 transition hover:border-gray-600 hover:text-white"
+          >
+            Download .msi
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-border">
+    <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
+      <div class="flex items-center gap-2 text-sm text-gray-500">
+        <img src="icon.png" alt="" class="h-5 w-5" />
+        Knotic &mdash; Free &amp; open source
+      </div>
+      <div class="flex items-center gap-6 text-sm text-gray-500">
+        <a href="https://github.com/kodezebra/knotic" target="_blank" class="transition hover:text-gray-300">GitHub</a>
+        <a href="https://github.com/kodezebra/knotic/releases" target="_blank" class="transition hover:text-gray-300">Releases</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
